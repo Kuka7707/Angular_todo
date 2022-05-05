@@ -3,7 +3,7 @@
         Органгайзер: <strong>{{ dataService.date | async | moment:'DD.MM.YYYY' }}</strong>
     </header>
     <main>
-        <ul *ngIf="tasks.length; else noTasks">
+        <ul *ngIf="tasks; else noTasks">
             <li class="task" *ngFor="let task of tasks; let i = index">
                 <span>
                     <strong>{{i+1}}</strong>
