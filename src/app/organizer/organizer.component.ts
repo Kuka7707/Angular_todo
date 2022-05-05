@@ -8,20 +8,20 @@ import { TasksService } from '../shared/task.service';
 @Component({
   selector: 'app-organizer',
   templateUrl: './organizer.component.html',
-  styleUrls: ['./organizer.component.scss']
+  styleUrls: ['./organizer.component.scss'],
 })
 
 export class OrganizerComponent implements OnInit {
 
   form: FormGroup
-  todos: Task[] = []
+  tasks: any;
 
   constructor(public dataService: DateService, public tasksService: TasksService) { }
 
   ngOnInit(): void {
     this.dataService.date.pipe(
       switchMap(date => this.tasksService.load(date))
-    ).subscribe(tasks => {this.todos = tasks})
+    ).subscribe(tasks => {this.tasks = tasks})
 
     this.form = new FormGroup({
       title: new FormControl('', Validators.required)
@@ -36,17 +36,18 @@ export class OrganizerComponent implements OnInit {
     }
 
     this.tasksService.create(task).subscribe(task => {
-      // this.tasks.push(task)
+      this.tasks.push(task)
       console.log('New Task', task)
       this.form.reset()
     }, err => console.error(err))
     
   }
 
-  // remove(task: Task){
-  //   this.tasksService.remove(task).subscribe(()=>{
-  //     this.tasks = this.tasks.filter(t => t.id !== task.id)
-  //   }, err => console.error(err))
-  // }
+  remove(task: Task){
+    // this.tasksService.remove(task).subscribe(()=>{
+    //   console.log(task)
+    //   this.tasks = this.tasks.filter(t => t.id !== task.id)
+    // }, err => console.error(err))
+  }
 
 }

@@ -7,6 +7,7 @@ import * as moment from 'moment';
 export interface Task{
     id?: string,
     title: string
+    // title: any
     date?: string
 }
 interface CreateResponse{
@@ -27,7 +28,7 @@ export class TasksService {
                 if(!tasks){
                     return []
                 }
-                console.log('vot', Object.keys(tasks).map(key=>({...tasks[key], id:key})))
+                // console.log('vot', Object.keys(tasks).map(key=>({...tasks[key], id:key})))
                 return Object.keys(tasks).map(key=>({...tasks[key], id:key}))
         }))
     }
@@ -39,7 +40,7 @@ export class TasksService {
         }))
     }
 
-    remove(task: Task ):Observable<void>{
+    remove( task: Task ):Observable<void>{
         return this.http.delete<void>(`${TasksService.url}/${task.date}/${task.id}.json`)
     }
 }
