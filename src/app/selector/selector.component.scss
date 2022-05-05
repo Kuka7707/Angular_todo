@@ -1,0 +1,13 @@
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+        margin: 0 2rem;
+        text-align: center;
+        min-width: 200px;
+    }
+    i {
+        cursor: pointer;
+    }
+}

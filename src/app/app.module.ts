@@ -1,16 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { SelectorComponent } from './selector/selector.component';
+import { OrganizerComponent } from './organizer/organizer.component';
+import { DateService } from './shared/date.service';
+import { MomentPipe } from './shared/moment.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { TasksService } from './shared/task.service';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalendarComponent,
+    SelectorComponent,
+    OrganizerComponent,
+    MomentPipe,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DateService, TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
