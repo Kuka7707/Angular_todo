@@ -14,15 +14,14 @@ import { TasksService } from '../shared/task.service';
 export class OrganizerComponent implements OnInit {
 
   form: FormGroup
-  tasks: Task[] = []
+  todos: Task[] = []
 
   constructor(public dataService: DateService, public tasksService: TasksService) { }
 
   ngOnInit(): void {
     this.dataService.date.pipe(
       switchMap(date => this.tasksService.load(date))
-    ).subscribe(tasks => {this.tasks = tasks})
-    console.log(this.tasks)
+    ).subscribe(tasks => {this.todos = tasks})
 
     this.form = new FormGroup({
       title: new FormControl('', Validators.required)
